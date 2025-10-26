@@ -6,7 +6,7 @@
 #include <string.h>
 
 void appendToken(char *token, tokens_t **tokens);
-void tokenize(char *string, tokens_t **tokens);
+int tokenize(char *string, tokens_t **tokens);
 
 void appendToken(char *token, tokens_t **tokens) {
   int n = (*tokens)->n;
@@ -20,11 +20,13 @@ void appendToken(char *token, tokens_t **tokens) {
   (*tokens)->n++;
 }
 
-void tokenize(char *string, tokens_t **tokens) {
+int tokenize(char *string, tokens_t **tokens) {
   char *token;
   char *dstring = strdup(string);
   char *delimiter = " ";
   token = strtok(dstring, delimiter);
+  if (token == NULL)
+    return 1;
   *tokens = (tokens_t *)malloc(sizeof(tokens_t));
   (*tokens)->capacity = 8;
   (*tokens)->array = (char **)malloc(sizeof(char *) * (*tokens)->capacity);
@@ -41,4 +43,5 @@ void tokenize(char *string, tokens_t **tokens) {
     appendToken(token, tokens);
   }
   free(dstring);
+  return 0;
 }

@@ -22,7 +22,9 @@ int main() {
     if (strlen(command) == 0) {
       continue;
     }
-    tokenize(command, &tokens);
+    if (tokenize(command, &tokens) == 1) {
+      continue;
+    };
     if (strcmp(tokens->array[0], "exit") == 0) {
       return 0;
     }

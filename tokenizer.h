@@ -9,6 +9,6 @@ struct Tokens {
 
 typedef struct Tokens tokens_t;
 void appendToken(char *token, tokens_t **tokens);
-void tokenize(char *string, tokens_t **tokens);
+int tokenize(char *string, tokens_t **tokens);
 
 #endif // TOKENIZER_H
